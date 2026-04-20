@@ -1,5 +1,3 @@
-name: Run Job Agent
-
 on:
   schedule:
     - cron: "0 16 * * *"  # daily
