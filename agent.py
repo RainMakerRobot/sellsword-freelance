@@ -26,7 +26,10 @@ def get_links():
 
 def extract_text(url):
     try:
-        r = requests.get(url, timeout=10)
+        try:
+    r = requests.get(url, timeout=10)
+except:
+    return []
         soup = BeautifulSoup(r.text, "html.parser")
         return soup.get_text(" ", strip=True)[:4000]
     except:
