@@ -50,7 +50,7 @@ Answer only YES or NO.
     )
     return "YES" in resp.choices[0].message.content
     
-    def send_email(results):
+def send_email(results):
     if not results:
         return
 
