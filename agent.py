@@ -26,15 +26,12 @@ def get_links():
 
 def extract_text(url):
     try:
-        try:
-    r = requests.get(url, timeout=10)
-except:
-    return []
+        r = requests.get(url, timeout=10)
         soup = BeautifulSoup(r.text, "html.parser")
         return soup.get_text(" ", strip=True)[:4000]
     except:
         return ""
-
+        
 def evaluate(text):
     prompt = f"""
 Determine if this is a freelance writing job paying at least $50/hr.
