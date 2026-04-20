@@ -33,19 +33,24 @@ def extract_text(url):
         return ""
         
 def evaluate(text):
+    from openai import OpenAI
+
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
     prompt = f"""
 Determine if this is a freelance writing job paying at least $50/hr.
 Answer only YES or NO.
 
 {text}
 """
-    resp = openai.ChatCompletion.create(
+
+    resp = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt}]
     )
-    return "YES" in resp.choices[0].message["content"]
-
-def send_email(results):
+    return "YES" in resp.choices[0].message.content
+    
+    def send_email(results):
     if not results:
         return
 
